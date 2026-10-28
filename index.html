@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#17251f">
+  <meta name="description" content="Prova gratuita di posizionamento WebAR GPS della Torre Fontanelle.">
+  <title>Torre Fontanelle · Prova GPS</title>
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/locar@0.1.0/dist/locar.umd.js"></script>
+  <script>window.LocAR = window.locar;</script>
+  <script src="https://cdn.jsdelivr.net/npm/locar-aframe@0.1.2/dist/locar-aframe.umd.js"></script>
+  <script type="module" crossorigin src="./assets/gpsTest-Css9es7I.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-P2Xu9kJm.js">
+  <link rel="stylesheet" crossorigin href="./assets/gpsTest-DgRmxLL6.css">
+</head>
+<body>
+  <a-scene
+    embedded
+    vr-mode-ui="enabled: false"
+    locar-webcam="idealWidth: 1280; idealHeight: 720"
+    renderer="antialias: true; alpha: true"
+    gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/versioned/decoders/1.5.7/"
+    loading-screen="enabled: false">
+    <a-assets>
+      <a-asset-item id="tower" src="./assets/TorreFontanelle-ottimizzata.glb"></a-asset-item>
+    </a-assets>
+    <a-entity
+      id="tower-anchor"
+      gltf-model="#tower"
+      locar-entity-place="latitude: 43.98552778; longitude: 12.67877778"
+      scale="10 10 10"
+      position="0 3.3 0"
+      rotation="0 0 0"
+      visible="false">
+    </a-entity>
+    <a-camera locar-camera="positionMinAccuracy: 50; smoothingFactor: 0.1; enablePermissionDialog: true; enableStyling: true"></a-camera>
+  </a-scene>
+
+  <main class="hud" aria-live="polite">
+    <header><span class="brand">TORRE FONTANELLE</span><span class="badge">TEST GPS · BOZZA</span></header>
+    <button id="reopen-panel" class="mini-readout" type="button" hidden>Info GPS</button>
+    <section class="card">
+      <button id="collapse-panel" class="collapse-button" type="button" aria-label="Riduci pannello">Riduci ×</button>
+      <p class="eyebrow">PROTOTIPO GRATUITO</p>
+      <h1>Prova sul<br><em>luogo reale.</em></h1>
+      <p class="copy">Punta lentamente il telefono verso l’angolo del muraglione. La torre è posizionata alle coordinate indicate; GPS e bussola possono spostarla rispetto al punto preciso.</p>
+      <div class="readout" id="status">In attesa della posizione GPS…</div>
+      <div class="metrics"><span>Coordinate torre</span><b>43.98552778, 12.67877778</b></div>
+      <div class="metrics"><span>La tua distanza</span><b id="distance">—</b></div>
+      <p class="tip">Per la prova: usa Safari su iPhone o Chrome su Android, consenti fotocamera, posizione e movimento. Muoviti all’aperto e attendi qualche secondo che bussola e GPS si stabilizzino.</p>
+    </section>
+    <p class="footer">Prova tecnica: non è un ancoraggio VPS e non salva la posizione tra visitatori.</p>
+  </main>
+</body>
+</html>
